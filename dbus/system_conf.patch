@@ -1,0 +1,22 @@
+# File source /usr/share/dbus-1/system.conf
+# Replace the $user with your username
+--- system.conf.orig	2024-02-27 14:06:35.952046502 +0530
++++ system.conf	2024-02-27 14:01:25.988622718 +0530
+@@ -49,6 +49,7 @@
+          name ownership and sending method calls -->
+     <deny own="*"/>
+     <deny send_type="method_call"/>
++    <allow own="com.example.TestService"/>
+ 
+     <!-- Signals and reply messages (method returns, errors) are allowed
+          by default -->
+@@ -137,4 +138,9 @@
+   <include ignore_missing="yes">/etc/dbus-1/system-local.conf</include>
+ 
+   <include if_selinux_enabled="yes" selinux_root_relative="yes">contexts/dbus_contexts</include>
++  
++  <policy user="$user">
++    <allow send_destination="com.example.TestService"/>
++  </policy>
++
+ </busconfig>
